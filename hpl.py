@@ -22,7 +22,7 @@ def run_hpl(n,nr,tol=16):
 Run the High-performance  LINPACK test on a matrix of size n x n, nr number of times and ensures that the the maximum of the three residuals is strictly less than the prescribed tol erance (defaults to 16).
 This function returns the  performance in GFlops/Sec.
     """
-    accuracy=cn.float32
+    accuracy=cn.float64
     a = cn.random.rand(n, n).astype(accuracy);
     b = cn.random.rand(n, 1).astype(accuracy);
     x,t = iterate_func(nr,cn.linalg.solve, a, b,n)
@@ -42,7 +42,7 @@ This function returns the  performance in GFlops/Sec.
     
 
 def main():
-    r=run_hpl(15000,5)
+    r=run_hpl(30000,20)
     msg= "Linpack benchmark {0:.4f}  GFlops/Sec".format(r)
     logging.info(msg)
 if __name__=='__main__':main()
