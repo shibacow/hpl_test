@@ -6,6 +6,12 @@ import cupy as cn
 import numpy as np
 import time
 import logging
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", help="specify demensions",default=25000,type=int)
+parser.add_argument("-l", help="loop count",default=20,type=int)
+args = parser.parse_args()
+
 logging.basicConfig(level=logging.INFO)
 
 def iterate_func(nr,f,a,b,divsize):
@@ -42,7 +48,7 @@ This function returns the  performance in GFlops/Sec.
     
 
 def main():
-    r=run_hpl(30000,20)
+    r=run_hpl(args.d,args.l)
     msg= "Linpack benchmark {0:.4f}  GFlops/Sec".format(r)
     logging.info(msg)
 if __name__=='__main__':main()
